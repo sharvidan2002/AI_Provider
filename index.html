@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Study Helper - Transform Your Notes with AI</title>
+
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Transform your handwritten notes, textbook pages, and diagrams into interactive study materials with AI. Get instant summaries, quiz questions, and more." />
+    <meta name="keywords" content="AI study helper, OCR, study notes, quiz generator, education, AI tutor, study assistant" />
+    <meta name="author" content="AI Study Helper" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AI Study Helper - Transform Your Notes with AI" />
+    <meta property="og:description" content="Upload photos of your study materials and get AI-powered summaries, explanations, quiz questions, and video suggestions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aistudyhelper.com" />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Study Helper - Transform Your Notes with AI" />
+    <meta name="twitter:description" content="Upload photos of your study materials and get AI-powered summaries, explanations, quiz questions, and video suggestions." />
+    <meta name="twitter:image" content="/twitter-image.png" />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.jsx" as="script" type="module">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <!-- Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "AI Study Helper",
+      "description": "AI-powered study assistant that transforms handwritten notes and textbook pages into interactive learning materials",
+      "url": "https://aistudyhelper.com",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "AI Study Helper Team"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Loading Fallback -->
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: system-ui, sans-serif;">
+        <h1>🤖 AI Study Helper</h1>
+        <p>This application requires JavaScript to run. Please enable JavaScript in your browser.</p>
+      </div>
+    </noscript>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {
+            // Service worker registration failed - not critical
+          });
+        });
+      }
+    </script>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
