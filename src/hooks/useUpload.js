@@ -18,6 +18,31 @@ export const useUpload = () => {
   } = useAppContext()
 
   /**
+   * Poll processing status until complete
+   */
+  const pollProcessingStatus = useCallback(async (documentId) => {
+    try {
+      const document = await uploadService.pollDocumentStatus(
+        documentId,
+        (updatedDocument) => {
+          setProcessingStatus(updatedDocument.processingStatus)
+          updateDocument(updatedDocument)
+        }
+      )
+
+      setProcessingStatus('completed')
+      setCurrentDocument(documentId)
+      return document
+
+    } catch (error) {
+      setProcessingStatus('failed')
+      const errorMessage = error.message || 'Processing failed'
+      setError(errorMessage)
+      throw error
+    }
+  }, [updateDocument, setCurrentDocument])
+
+  /**
    * Upload file with prompt
    */
   const uploadFile = useCallback(async (file, prompt, processType = 'analysis') => {
@@ -65,31 +90,6 @@ export const useUpload = () => {
       setUploadProgress(0)
     }
   }, [addDocument, pollProcessingStatus, setGlobalError])
-
-  /**
-   * Poll processing status until complete
-   */
-  const pollProcessingStatus = useCallback(async (documentId) => {
-    try {
-      const document = await uploadService.pollDocumentStatus(
-        documentId,
-        (updatedDocument) => {
-          setProcessingStatus(updatedDocument.processingStatus)
-          updateDocument(updatedDocument)
-        }
-      )
-
-      setProcessingStatus('completed')
-      setCurrentDocument(documentId)
-      return document
-
-    } catch (error) {
-      setProcessingStatus('failed')
-      const errorMessage = error.message || 'Processing failed'
-      setError(errorMessage)
-      throw error
-    }
-  }, [updateDocument, setCurrentDocument])
 
   /**
    * Retry failed processing

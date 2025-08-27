@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import FileUpload from '../components/upload/FileUpload'
 import ProcessingStatus from '../components/upload/ProcessingStatus'
 import RecentDocuments from '../components/upload/RecentDocuments'
@@ -32,12 +32,6 @@ const Home = () => {
     clearError: clearGlobalError
   } = useAppContext()
 
-  // Load recent documents on component mount
-  useEffect(() => {
-    loadRecentDocuments()
-  }, [loadRecentDocuments])
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps, no-undef
   const loadRecentDocuments = useCallback(async () => {
     try {
       const documents = await getRecentDocuments(10)
@@ -45,7 +39,12 @@ const Home = () => {
     } catch (error) {
       console.error('Failed to load recent documents:', error)
     }
-  })
+  }, [getRecentDocuments])
+
+  // Load recent documents on component mount
+  useEffect(() => {
+    loadRecentDocuments()
+  }, [loadRecentDocuments])
 
   const handleFileUpload = async (file, prompt) => {
     try {

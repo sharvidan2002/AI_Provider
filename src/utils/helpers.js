@@ -351,6 +351,21 @@ export const getExportTypeLabel = (type) => {
   return EXPORT_TYPE_LABELS[type] || capitalize(type)
 }
 
+export const getExportTypeDisplayName = (type) => {
+  return EXPORT_TYPE_LABELS[type] || capitalize(type)
+}
+
+export const getExportTypeIcon = (type) => {
+  const icons = {
+    analysis: '📋',
+    quiz: '❓',
+    flashcards: '🗂️',
+    summary: '📝',
+    unknown: '📄'
+  }
+  return icons[type] || icons.unknown
+}
+
 /**
  * Scroll element into view smoothly
  */

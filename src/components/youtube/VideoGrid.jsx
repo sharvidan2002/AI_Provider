@@ -105,9 +105,9 @@ const VideoGrid = ({
               className="input text-sm w-auto"
             >
               <option value="all">All Durations</option>
-              <option value="short">Short (< 5 min)</option>
+              <option value="short">Short (&lt; 5 min)</option>
               <option value="medium">Medium (5-20 min)</option>
-              <option value="long">Long (> 20 min)</option>
+              <option value="long">Long (&gt; 20 min)</option>
             </select>
 
             {/* Sort Options */}
